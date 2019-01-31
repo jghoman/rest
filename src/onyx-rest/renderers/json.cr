@@ -43,6 +43,14 @@ module Onyx::REST
                   payload = {
                     path: error.path,
                   }
+                when HTTP::Router::RouteNotFoundError
+                  code = 404
+                  name = "RouteNotFound"
+                  message = error.message
+                  payload = {
+                    method: error.method,
+                    path:   error.path,
+                  }
                 end
 
                 context.response.status_code = code

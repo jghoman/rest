@@ -11,7 +11,7 @@ module Onyx::REST
     # A plain text renderer.
     # Should be put after processor (i.e. `Onyx::REST::Processor`).
     # Calls the next handler if it's present.
-    class Plain
+    class Text
       include ::HTTP::Handler
 
       # :nodoc:
@@ -32,7 +32,7 @@ module Onyx::REST
           context.response.status_code = code
           context.response << code << " " << message
         elsif view = context.response.view
-          context.response << view.to_s
+          view.to_text(context.response)
         end
 
         if self.next

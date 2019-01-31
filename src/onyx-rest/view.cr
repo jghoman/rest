@@ -18,13 +18,13 @@ module Onyx::REST::View
   end
 
   macro text(&block)
-    def to_s(io)
+    def to_text(io)
       io << ({{yield.id}})
     end
   end
 
   macro text(value)
-    def to_s(io)
+    def to_text(io)
       io << ({{value}})
     end
   end
